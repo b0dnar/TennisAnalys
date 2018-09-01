@@ -24,9 +24,11 @@ textarea {
 }
 
 .align-center {
-        align-content: center;
+    text-align: center;
+    vertical-align: middle;
 }
 
 .shr {
     font-weight: bolder;
+    font-size: 18px;
 }

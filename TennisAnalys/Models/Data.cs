@@ -19,5 +19,19 @@ namespace TennisAnalys.Models
         public float CurrentP2M { get; set; }
         public float CurrentP1S { get; set; }
         public float CurrentP2S { get; set; }
+        public string ColorRow { get; set; }
+        public string ColorP1M { get; set; }
+        public string ColorP2M { get; set; }
+        public string ColorP1S { get; set; }
+        public string ColorP2S { get; set; }
+
+        public Data()
+        {
+            ColorRow = "white";
+            ColorP1M = "white";
+            ColorP2M = "white";
+            ColorP1S = "white";
+            ColorP2S = "white";
+        }
     }
 }

@@ -10,6 +10,7 @@ namespace TennisAnalys.Controllers
 {
     public class HomeController : Controller
     {
+        private List<Data> datas = new List<Data>();
         public ActionResult Index()
         {
             ViewBag.Result = Parse();
@@ -17,10 +18,16 @@ namespace TennisAnalys.Controllers
             return View();
         }
 
+        [HttpPost]
+        public void SetKoef(string value, int number, string name)
+        {
+            var x = 2;
+        }
+
         #region PARSE
         private List<Data> Parse()
         {
-            List<Data> datas = new List<Data>();
+            int index = 1;
             string url = "https://1xvxe.host/en/live/Tennis/";
             string url1 = "https://ua1xbet.com/LiveFeed/GetGameZip?id=";
             string url2 = "&lng=ru&cfview=0&isSubGames=true&GroupEvents=true&countevents=250";
@@ -31,7 +38,9 @@ namespace TennisAnalys.Controllers
             foreach (var item in listId)
             {
                 string str = BaseClass.MethodGET(url1 + item + url2);
-                datas.Add(FillingData(str));
+                var d = FillingData(str);
+                d.Id = index++;
+                datas.Add(d);
             }
 
             return datas;
@@ -63,7 +72,6 @@ namespace TennisAnalys.Controllers
         private Data FillingData(string kod)
         {
             Data data = new Data();
-
             var o = JObject.Parse(kod);
 
             data.Score = "3-2";
@@ -107,6 +115,15 @@ namespace TennisAnalys.Controllers
                     else if ((int)item[0]["T"] == 3)
                         data.P2S = (float)item[0]["C"];
                 }
+            }
+
+            if(data.P1S > 0 || data.P2S >0)
+            {
+                data.ColorRow = "orange";
+                data.ColorP1M = "orange";
+                data.ColorP2M = "orange";
+                data.ColorP1S = "orange";
+                data.ColorP2S = "orange";
             }
 
             return data;

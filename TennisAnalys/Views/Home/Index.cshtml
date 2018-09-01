@@ -2,18 +2,21 @@
 <head>
     <title>Tennis Analys</title>
     @Styles.Render("~/Content/css")
+    <meta http-equiv="refresh" content="5"/>
 </head>
 <body>
     <header>
 
-        <h1 class="center">Лайв матчи</h1>
+        <h1 class="align-center">Лайв матчи</h1>
     </header>
     <div>
+        <p></p>
+        <p></p>
         <table>
             <tr class="shr">
                 <td width="30">№</td>
-                <td width="150">Лига</td>
-                <td width="300">Матч</td>
+                <td width="300">Лига</td>
+                <td width="400">Матч</td>
                 <td width="80">Счет</td>
                 <td width="50">П1М</td>
                 <td width="50">П2М</td>
@@ -21,20 +24,54 @@
                 <td width="50">П2С</td>
                 <td></td>
             </tr>
-
             @foreach (var b in ViewBag.Result)
             {
-                
-            <tr>
-                <td><p>1</p></td>
-                <td><p>@b.Liga</p></td>
-                <td><p>@b.Match</p></td>
-                <td><p>@b.Score</p></td>
-                <td><p>@b.P1M</p></td>
-                <td><p>@b.P2M</p></td>
-                <td><p>@b.P1S</p></td>
-                <td><p>@b.P2S</p></td>
-            </tr>
+                <tr>
+                    <td bgcolor="@b.ColorRow"><p>@b.Id</p></td>
+                    <td bgcolor="@b.ColorRow"><p>@b.Liga</p></td>
+                    <td bgcolor="@b.ColorRow"><p>@b.Match</p></td>
+                    <td bgcolor="@b.ColorRow"><p>@b.Score</p></td>
+                    <td bgcolor="@b.ColorP1M">
+                        <p>@b.P1M</p>
+                        <form action="/Home/SetKoef" method="post" class="form">
+                            <p>
+                                <input type="text" size="7" name="value" />
+                                <input type="hidden" name="number" value="1" />
+                                <input type="hidden" name="name" value="@b.Match" />
+                            </p>
+                        </form>
+                    </td>
+                    <td bgcolor="@b.ColorP2M">
+                        <p>@b.P2M</p>
+                        <form action="/Home/SetKoef" method="post" class="form">
+                            <p>
+                                <input type="text" size="7" name="value" />
+                                <input type="hidden" name="number" value="2" />
+                                <input type="hidden" name="name" value="@b.Match" />
+                            </p>
+                        </form>
+                    </td>
+                    <td bgcolor="@b.ColorP1S">
+                        <p>@b.P1S</p>
+                        <form action="/Home/SetKoef" method="post" class="form">
+                            <p>
+                                <input type="text" size="7" name="value" />
+                                <input type="hidden" name="number" value="3" />
+                                <input type="hidden" name="name" value="@b.Match" />
+                            </p>
+                        </form>
+                    </td>
+                    <td bgcolor="@b.ColorP2S">
+                        <p>@b.P2S</p>
+                        <form action="/Home/SetKoef" method="post" class="form">
+                            <p>
+                                <input type="text" size="7" name="value" />
+                                <input type="hidden" name="number" value="4" />
+                                <input type="hidden" name="name" value="@b.Match" />
+                            </p>
+                        </form>
+                    </td>
+                </tr>
             }
         </table>
     </div>
