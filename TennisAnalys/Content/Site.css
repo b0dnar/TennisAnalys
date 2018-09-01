@@ -22,3 +22,11 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.align-center {
+        align-content: center;
+}
+
+.shr {
+    font-weight: bolder;
+}
